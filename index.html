@@ -9,17 +9,32 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/">View Highscores</a>
-                </li>
-                <li>
-                    <p>Time Left</p>
-                </li>
-            </ul>
-        </nav>
+        <ul>
+            <li>
+                <a href="/">View Highscores</a>
+            </li>
+            <li>
+                <p id="timer">timer</p>
+            </li>
+        </ul>
     </header>
+    <main class="page-content" id="page-content">
+        <!-- Quiz Intro -->
+        <section class="main-page">
+            <h2 class="page-title">Welcome to Code Quiz</h2>
+            <br>
+            <p>
+                Click the button below to begin the quiz! <br> 
+                Once the quiz begins, you will have 50 seconds to complete all the questions <br>
+                Each wrong answer will deduce 10 seconds from the timer. Good luck!
+            </p>
+            <button class="btn" id="start-quiz">Start Quiz</button>
+        </section>
+        <!-- Section for Question to load-->
+        <section class="main-page" id="question-one">
+            
+        </section>
+    </main>
 
     <script src="./assets/js/script.js"></script>
 </body>
