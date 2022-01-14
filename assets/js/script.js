@@ -1,10 +1,12 @@
 // variables
-var countdown = 50;
 var questionIdCounter = 0;
+var countdown = 50;
 var timerEl = document.getElementById('timer');
 var startEl = document.querySelector('#start-quiz');
-var pageContentEl = document.querySelector('#page-content');
-var questionsEl = document.querySelector("#questions");
+var pageContentEl = document.querySelector('.main-page');
+var questionsEl = document.querySelector('#questions');
+var buttonEl = document.querySelector(".btn");
+
 // question variables
 var questionOneObj = {
     question: "Commonly used data types DO NOT include:",
@@ -16,6 +18,9 @@ var questionOneObj = {
 
 var questionTwoObj = {
     question: "The condition in an if/else statement is enclosed with _______.",
+
+    // make an array
+
     answerOne: "1. quotes",
     answerTwo: "2. curly brackets",
     answerThree: "3. parenthesis",
@@ -47,53 +52,89 @@ var questionFiveObj = {
 };
 
 var questionsArr = [questionOneObj, questionTwoObj, questionThreeObj, questionFourObj, questionFiveObj];
+var currentQuestion = [];
 // localStorage array
 var highScores = [];
 
-// create first question
-var loadQuestion = function() {
-    // create new Question
-    var questionEl = document.createElement("h2");
-    var answersOneEl = document.createElement("button");
-    var answersTwoEl = document.createElement("button");
-    var answersThreeEl = document.createElement("button");
-    var answersFourEl = document.createElement("button");
-    // add class name for css here
-
-    // add question Id as attribute
-    questionEl.setAttribute("data-question-id", questionIdCounter);
-    answersOneEl.setAttribute("data-answers-id", questionIdCounter);
-    answersTwoEl.setAttribute("data-answers-id", questionIdCounter);
-    answersThreeEl.setAttribute("data-answers-id", questionIdCounter);
-    answersFourEl.setAttribute("data-answers-id", questionIdCounter);
+// Quiz timer
+var timeLimit = function() {
     
 
-    // put in text
-    questionEl.textContent = questionOneObj.question;
-    answersOneEl.textContent = questionOneObj.answerOne;
-    answersTwoEl.textContent = questionOneObj.answerTwo;
-    answersThreeEl.textContent = questionOneObj.answerThree;
-    answersFourEl.textContent = questionOneObj.answerFour;
-    
-    // append child to generate questions/answers
-    questionsEl.appendChild(questionEl);
-    questionsEl.appendChild(answersOneEl);
-    questionsEl.appendChild(answersTwoEl);
-    questionsEl.appendChild(answersThreeEl);
-    questionsEl.appendChild(answersFourEl);
+    var timeInterval = setInterval(function () {
+        if (countdown > 0) {
+            timerEl.textContent = "Time: " + countdown;
+            countdown--;
+        } 
+        else {
+            timerEl.textContent = '';
 
-    //
+            clearInterval(timeInterval);
+
+            alert("the time is up!");
+        }
+
+    }, 1000);
+}
+
+// create question elements and fill them
+var loadQuestion = function(curQuestion) {
     
-};
+    var questionDivEl = document.createElement("div");
+    // give class name
+    questionDivEl.className = "question-div";
+    // give id 
+    questionDivEl.setAttribute("data-question-id", questionIdCounter);
+
+    // add text to elements
+    questionDivEl.innerHTML = 
+    "<h2 class='question-style'>" + curQuestion.question 
+    + "</h2><button class='btn' id='correct-btn'>" + curQuestion.answerOne
+    + "</button><button class='btn' id='wrong-btn'>" + curQuestion.answerTwo
+    + "</button><button class='btn' id='wrong-btn'>" + curQuestion.answerThree
+    + "</button><button class='btn' id='wrong-btn'>" + curQuestion.answerFour;
+
+    pageContentEl.replaceWith(questionDivEl);
+    console.log(curQuestion);
+}
 
 // question cycle function
 var cycleQuestions = function() {
     for (var i = 0; i < 5; i++) {
-        loadQuestion(questionsArr);
+        currentQuestion = loadQuestion(questionsArr[i]);
         questionIdCounter++;
+        console.log(currentQuestion);
+    }    
+};
+
+// recieve user clicks 
+var clickButtons = function(event) {
+    // get target element
+    var targetEl = event.target;
+    // correct answer was clicked
+    if (targetEl.matches("#correct-btn")) {
+        console.log("correct"); 
+        
     }
+    // wrong answer was clicked
+    else if (event.target.matches("#wrong-btn")) {
+        console.log("incorrect");
+        countdown - 10;
+    }
+    console.log(event);
+};
+
+// function to run through quiz
+
+var quizFunction = function() {
+    timeLimit();
+    cycleQuestions();
+
+    clickButtons();
 }
 // event listeners
+
 startEl.addEventListener("click", cycleQuestions);
 
-console.log(questionsArr);
+console.log(questionsArr.length);
+
+cycleQuestions();
