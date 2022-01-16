@@ -9,26 +9,32 @@
 </head>
 <body>
     <header>
-        <ul>
-            <li>
-                <a href="/">View Highscores</a>
-            </li>
-            <li>
-                <p id="timer"></p>
-            </li>
-        </ul>
+         <span>
+            
+            <p id="timer"></p>
+        </span>
     </header>
-    <main class="page-content" id="page-content">
-        <section class="main-page">
-            <h2 class="page-title">Welcome to Code Quiz</h2>
+    <main class="page-content">
+        <section class="page-quiz" id="page-quiz">
+            
+        </section>
+        <h1 id="alert"></h1>
+        <section class="page-first" id="page-first">
+            <h2>Coding Quiz Challenge</h2>
             <br>
             <p>
-                Click the button below to begin the quiz! <br> 
-                Once the quiz begins, you will have 50 seconds to complete all the questions <br>
-                Each wrong answer will deduct 10 seconds from the timer. Good luck!
+                Try to answer the following code-related questions within the time limit. <br>
+                Keep in mind that incorrect answers will penalize your score/time by ten seconds! <br>
             </p>
             <button class="btn" id="start-quiz">Start Quiz</button>
         </section>
+        <section class="page-end" id="page-end">
+            
+        </section>
+        <section class="page-scores" id="page-scores">
+            <p>Highscores</p>
+        </section>
+
     </main>
     <script src="./assets/js/script.js"></script>
 </body>
