@@ -209,6 +209,8 @@ var showScores = function() {
             scoreList.appendChild(listitem);
         }
         pageScoresEl.appendChild(scoreList);
+        
+    }
     // make buttons
     var backBtn = document.createElement("button");
     backBtn.className = "btn";
@@ -219,8 +221,6 @@ var showScores = function() {
     ClrBtn.className = "btn"
     ClrBtn.textContent = "Clear Highscores";
     pageScoresEl.appendChild(ClrBtn);
-
-    }
     backBtn.addEventListener("click", function() {
         pageScoresEl.style.display = "none";
         firstPageEl.style.display = "block";
