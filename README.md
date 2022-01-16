@@ -13,8 +13,9 @@ This webpage is a code quiz example, similar to the kind used during interviews.
 *Javascript
 
 ## Screenshot
-
+![This is the page](./assets/images/READMEIMG.jpg)
 ## Website
+https://j-maclellan.github.io/quizalicious/
 
 ## Contributor
 *j-maclellan
