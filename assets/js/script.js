@@ -151,7 +151,7 @@ var loadNext = function(e) {
             loadQuiz(nextQuestion);
         }
     } else {
-        console.log("game over");
+        alert("game over");
         stopQuiz();
     }
 }
